@@ -111,6 +111,7 @@ namespace HelloMarioFramework
             PauseMenu.singleton.Disable();
             NextDialog();
             if (displaying) DialogUI.SetActive(true);
+            
         }
 
         private void NextDialog()

@@ -50,20 +50,20 @@ namespace HelloMarioFramework
         private Text progressText;
         [SerializeField]
         private Text returnText;
-        [SerializeField]
-        private AutoHide titleCardsUI;
-        [SerializeField]
-        private Text levelNameText;
-        private Text[] titleCardsText = new Text[2];
+        // [SerializeField]
+        // private AutoHide titleCardsUI;
+        // [SerializeField]
+        // private Text levelNameText;
+        // private Text[] titleCardsText = new Text[2];
 
         //Options menu prefab
         [SerializeField]
         private GameObject optionsPrefab;
 
         //Level name
-        [SerializeField]
-        private string levelName;
-        public static string levelSubText = "";
+        // [SerializeField]
+        // private string levelName;
+        // public static string levelSubText = "";
 
         //Stars in the current scene
         private Star[] starList;
@@ -87,10 +87,10 @@ namespace HelloMarioFramework
             jumpAction.action.Enable();
             if (LoadingScreen.IsHubScene())
                 returnText.text = "Save & Quit";
-            titleCardsText[0] = titleCardsUI.transform.GetChild(0).GetComponent<Text>();
-            titleCardsText[1] = titleCardsUI.transform.GetChild(1).GetComponent<Text>();
-            DisplayTitleCards(levelName, levelSubText);
-            levelNameText.text = levelName;
+            // titleCardsText[0] = titleCardsUI.transform.GetChild(0).GetComponent<Text>();
+            // titleCardsText[1] = titleCardsUI.transform.GetChild(1).GetComponent<Text>();
+            // DisplayTitleCards(levelName, levelSubText);
+            // levelNameText.text = levelName;
             starList = FindObjectsByType<Star>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
             //Hide progress UI if there are no stars in the current scene
@@ -198,18 +198,18 @@ namespace HelloMarioFramework
         }
 
         //Display the title cards
-        public void DisplayTitleCards(string title, string desc)
-        {
-            titleCardsText[0].text = title;
-            titleCardsText[1].text = desc;
-            titleCardsUI.ShowMe();
-        }
+        // public void DisplayTitleCards(string title, string desc)
+        // {
+        //     titleCardsText[0].text = title;
+        //     titleCardsText[1].text = desc;
+        //     titleCardsUI.ShowMe();
+        // }
 
         //Lengthen title cards
-        public void LengthenTitleCard()
-        {
-            titleCardsUI.autoHideAfter = 100f;
-        }
+        // public void LengthenTitleCard()
+        // {
+        //     titleCardsUI.autoHideAfter = 100f;
+        // }
 
     }
 }

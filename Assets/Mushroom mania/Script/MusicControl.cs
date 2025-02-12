@@ -48,12 +48,12 @@ namespace HelloMarioFramework
         {
             StopMusic();
             audioPlayer.PlayOneShot(victoryMusic);
-            PauseMenu.singleton.LengthenTitleCard();
-            PauseMenu.singleton.DisplayTitleCards("You got a star!", starName);
+            // PauseMenu.singleton.LengthenTitleCard();
+            // PauseMenu.singleton.DisplayTitleCards("You got a star!", starName);
             if (SaveData.save.CollectStar(starName))
                 SaveData.save.Save();
             SaveData.checkpoint = false;
-            PauseMenu.levelSubText = "";
+            // PauseMenu.levelSubText = "";
             LoadingScreen.scene = LoadingScreen.hubScene;
             StartCoroutine(ChangeScene(6f));
         }
@@ -64,7 +64,7 @@ namespace HelloMarioFramework
             StartCoroutine(RestartMusic(4f));
             audioPlayer.Stop();
             audioPlayer.PlayOneShot(victoryShortMusic);
-            PauseMenu.singleton.DisplayTitleCards("You got a star!", starName);
+            // PauseMenu.singleton.DisplayTitleCards("You got a star!", starName);
             if (SaveData.save.CollectStar(starName))
                 SaveData.save.Save();
         }
@@ -81,10 +81,10 @@ namespace HelloMarioFramework
         {
             StopMusic();
             SaveData.checkpoint = false;
-            PauseMenu.levelSubText = "";
+            // PauseMenu.levelSubText = "";
             if (LoadingScreen.IsHubScene())
             {
-                LoadingScreen.scene = LoadingScreen.titleScene;
+                // LoadingScreen.scene = LoadingScreen.titleScene;
                 SaveData.save.Save();
             }
             else

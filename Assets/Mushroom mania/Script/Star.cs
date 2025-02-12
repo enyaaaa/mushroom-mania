@@ -59,10 +59,10 @@ namespace HelloMarioFramework
                 p.PlaySound(collectSFX);
                 p.Victory(levelEndStar);
 
-                if (levelEndStar)
-                    MusicControl.singleton.Victory(starName);
-                else
-                    MusicControl.singleton.VictoryShort(starName);
+                // if (levelEndStar)
+                //     MusicControl.singleton.Victory(starName);
+                // else
+                //     MusicControl.singleton.VictoryShort(starName);
 
                 Destroy(gameObject);
             }

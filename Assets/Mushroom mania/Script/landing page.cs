@@ -6,6 +6,6 @@ public class MainMenu : MonoBehaviour
     public void LoadInstructions()
     {
         Debug.Log("📜 Loading Instructions Page...");
-        SceneManager.LoadScene("instruction"); // Make sure "Instructions" is the correct scene name
-    }
+        SceneManager.LoadScene("instruction"); // Ensure the scene name matches
+    } 
 }

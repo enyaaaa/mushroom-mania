@@ -122,7 +122,7 @@ namespace HelloMarioFramework
                     if (paused)
                     {
                         Time.timeScale = 0.0f;
-                        MusicControl.singleton.PauseMusic();
+                        //MusicControl.singleton.PauseMusic();
 
                         //Update star counter
                         if (starList.Length > 0)
@@ -142,7 +142,7 @@ namespace HelloMarioFramework
                     else
                     {
                         Time.timeScale = 1.0f;
-                        MusicControl.singleton.ResumeMusic();
+                        //MusicControl.singleton.ResumeMusic();
                     }
                 }
                 else if (paused && jumpAction.action.WasPressedThisFrame())
@@ -156,7 +156,7 @@ namespace HelloMarioFramework
                         case 0:
                             cursor.DeSelect();
                             audioPlayer.PlayOneShot(pauseSFX);
-                            MusicControl.singleton.ResumeMusic();
+                            //MusicControl.singleton.ResumeMusic();
                             Time.timeScale = 1.0f;
                             paused = false;
                             break;
@@ -169,7 +169,7 @@ namespace HelloMarioFramework
                         //Quit
                         case 2:
                             selected = true;
-                            MusicControl.singleton.Return();
+                            //MusicControl.singleton.Return();
                             audioPlayer.PlayOneShot(returnSFX);
                             Time.timeScale = 1.0f;
                             paused = false;

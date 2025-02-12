@@ -145,6 +145,26 @@ namespace HelloMarioFramework
         //Move fixed update to here. Override this.
         protected override void FixedUpdateStompable()
         {
+            Debug.Log("✅ FixedUpdateStompable() is running...");
+
+            if (myRigidBody == null)
+            {
+                Debug.LogError("❌ myRigidBody is NULL! Ensure Rigidbody is attached to Bully.");
+                return;
+            }
+
+            if (animator == null)
+            {
+                Debug.LogError("❌ animator is NULL! Ensure Animator is attached to Bully.");
+                return;
+            }
+
+            if (Player.singleton == null)
+            {
+                Debug.LogError("❌ Player.singleton is NULL! Ensure a Player exists in the scene.");
+                return;
+            }
+
             myRigidBody.rotation = Quaternion.Euler(0f, myRigidBody.rotation.eulerAngles.y, 0f);
 
             //Collision delay

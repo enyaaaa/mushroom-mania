@@ -1,70 +1,72 @@
-﻿/*
- *  Copyright (c) 2024 Hello Fangaming
- *
- *  Use of this source code is governed by an MIT-style
- *  license that can be found in the LICENSE file or at
- *  https://opensource.org/licenses/MIT.
- *  
- * */
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement; // Import Scene Management
 
 namespace HelloMarioFramework
 {
     public class Star : MonoBehaviour
     {
-
-        //Audio clips
         [SerializeField]
-        private AudioClip collectSFX;
+        private AudioClip collectSFX; // Sound effect when collecting the star
 
-        //Transparent star material
         [SerializeField]
-        private Material collectedStar;
+        private Material collectedStar; // Material for collected stars
 
-        //Star that ends the level
         [Tooltip("Whether collecting this star ends the level")]
         [SerializeField]
         private bool levelEndStar = true;
 
-        //Name to display after collecting star
         [Tooltip("All stars must have a unique name! This is how stars are tracked!")]
         [SerializeField]
         private string starName;
 
+        [Tooltip("Time delay before transitioning to the win page")]
+        [SerializeField]
+        private float transitionDelay = 2.0f; // 2 seconds delay
+
+        private bool isCollected = false; // Prevents multiple triggers
+
         private void Start()
         {
             if (IsCollected())
-                transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>().material = collectedStar;
-#if UNITY_EDITOR
-            if (starName == "")
             {
-                Debug.LogWarning("Hello Mario Framework: Star at " + transform.position + " is missing a name! All stars must have a unique name! This is how stars are tracked!");
-                if (UnityEditor.EditorUtility.DisplayDialog("Hello Mario Framework", "Star at " + transform.position + " is missing a name! All stars must have a unique name! This is how stars are tracked!", "Select GameObject", "Ignore"))
-                {
-                    UnityEditor.Selection.activeGameObject = gameObject;
-                    UnityEditor.EditorGUIUtility.PingObject(gameObject.GetInstanceID());
-                }
+                SkinnedMeshRenderer starRenderer = transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>();
+                if (starRenderer != null)
+                    starRenderer.material = collectedStar;
             }
-#endif
         }
 
-        //Collision with player
         private void OnTriggerEnter(Collider collision)
         {
+            if (isCollected) return; // Prevent duplicate collection
+
             Player p = collision.transform.GetComponent<Player>();
+
             if (p != null)
             {
+                isCollected = true;
                 p.PlaySound(collectSFX);
                 p.Victory(levelEndStar);
+                Debug.Log("🌟 Star Collected! 🎉 Loading win page in " + transitionDelay + " seconds...");
 
-                // if (levelEndStar)
-                //     MusicControl.singleton.Victory(starName);
-                // else
-                //     MusicControl.singleton.VictoryShort(starName);
+                // Disable star visuals & collision after collection
+                GetComponent<Collider>().enabled = false;
+                gameObject.SetActive(false);
 
-                Destroy(gameObject);
+                // Load the Win Page after delay
+                Invoke("LoadWinPage", transitionDelay);
+            }
+        }
+
+        private void LoadWinPage()
+        {
+            if (SceneExists("win page")) // Ensure scene name is correct
+            {
+                Debug.Log("✅ Loading Win Page...");
+                SceneManager.LoadScene("win page"); // Load Win Page scene
+            }
+            else
+            {
+                Debug.LogError("❌ WinPage scene is not in Build Settings or does not exist!");
             }
         }
 
@@ -73,5 +75,17 @@ namespace HelloMarioFramework
             return SaveData.save.CheckCollection(starName);
         }
 
+        private bool SceneExists(string sceneName)
+        {
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            {
+                string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+                if (scenePath.Contains(sceneName))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

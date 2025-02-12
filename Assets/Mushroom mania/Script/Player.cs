@@ -154,7 +154,7 @@ namespace HelloMarioFramework
             animator = transform.GetChild(0).GetComponent<Animator>();
             audioPlayer = gameObject.AddComponent<AudioSource>();
             cameraTransform = Camera.main.transform;
-            faceController = transform.GetChild(0).GetComponent<TransformSwapper>();
+            //faceController = transform.GetChild(0).GetComponent<TransformSwapper>();
             voicePack = GetComponent<VoicePack>();
 
             yPrevious = transform.position.y;
@@ -915,7 +915,7 @@ namespace HelloMarioFramework
                 hurtCooldown = true;
                 StartCoroutine(JumpAnim(9));
                 controlsEnabled = false;
-                MusicControl.singleton.Death();
+                //MusicControl.singleton.Death();
                 rumble.StartRumble(1f);
 
                 //Prevent hat coin spawner coins after death

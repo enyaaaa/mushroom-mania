@@ -918,6 +918,8 @@ namespace HelloMarioFramework
                 //MusicControl.singleton.Death();
                 rumble.StartRumble(1f);
 
+                Debug.Log("Player died! Triggering Game Over Page...");
+
                 //Prevent hat coin spawner coins after death
                 if (hat != null)
                 {
@@ -925,7 +927,15 @@ namespace HelloMarioFramework
                     if (spawner != null) Destroy(spawner);
                 }
 
-                GameManager.instance.PlayerDied();
+                if (GameManager.instance != null)
+                {
+                    GameManager.instance.PlayerDied();
+                }
+                else
+                {
+                    Debug.LogError("GameManager is NULL! Make sure GameManager is in the scene.");
+
+                }
             }
         }
 

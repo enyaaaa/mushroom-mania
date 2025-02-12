@@ -22,12 +22,12 @@ public class GameManager : MonoBehaviour
     // Call this function when the player dies
     public void PlayerDied()
     {
-        Debug.Log("Player has died! Restarting...");
-        Invoke("RestartGame", 2f); // Delay restart for 2 seconds
+        Debug.Log("Player has died! Loading Game Over Page...");
+        Invoke("LoadGameOverPage", 2f); // Delay restart for 2 seconds
     }
 
-    private void RestartGame()
+    private void LoadGameOverPage()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Reload current scene
+        SceneManager.LoadScene("gameover page"); // Make sure your Game Over scene is named "GameOver"
     }
 }

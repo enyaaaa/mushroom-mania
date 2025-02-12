@@ -924,6 +924,8 @@ namespace HelloMarioFramework
                     HatCoinSpawner spawner = hat.GetComponent<HatCoinSpawner>();
                     if (spawner != null) Destroy(spawner);
                 }
+
+                GameManager.instance.PlayerDied();
             }
         }
 

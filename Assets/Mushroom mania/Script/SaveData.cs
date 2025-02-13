@@ -67,7 +67,7 @@ namespace MushroomMania
             {
                 SetFileName("TestSave");
                 if (!Load()) NewGame();
-                Debug.Log("Hello Mario Framework: Using test save file!");
+                Debug.Log("Mushroom Mania: Using test save file!");
                 hubPositionSet = false;
             }
         }

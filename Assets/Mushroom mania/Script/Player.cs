@@ -121,8 +121,8 @@ namespace MushroomMania
                 if (brain == null) brain = c.GetComponent<CinemachineBrain>();
                 if (brain == null)
                 {
-                    Debug.LogWarning("Hello Mario Framework: Extra camera found at " + c.transform.position + ". Please delete this camera!");
-                    if (UnityEditor.EditorUtility.DisplayDialog("Hello Mario Framework", "Extra camera found at " + c.transform.position + ". Please delete this camera!", "Select GameObject", "Ignore"))
+                    Debug.LogWarning("Mushroom Mania: Extra camera found at " + c.transform.position + ". Please delete this camera!");
+                    if (UnityEditor.EditorUtility.DisplayDialog("Mushroom Mania", "Extra camera found at " + c.transform.position + ". Please delete this camera!", "Select GameObject", "Ignore"))
                     {
                         UnityEditor.Selection.activeGameObject = c.gameObject;
                         UnityEditor.EditorGUIUtility.PingObject(c.gameObject.GetInstanceID());
@@ -131,8 +131,8 @@ namespace MushroomMania
             }
             if (brain == null)
             {
-                Debug.LogWarning("Hello Mario Framework: Your scene is not set up correctly. Place down a Control prefab! (Assets > MushroomMania > Prefab > Menu)");
-                UnityEditor.EditorUtility.DisplayDialog("Hello Mario Framework", "Your scene is not set up correctly. Place down a Control prefab! (Assets > MushroomMania > Prefab > Menu)", "Ok");
+                Debug.LogWarning("Mushroom Mania: Your scene is not set up correctly. Place down a Control prefab! (Assets > MushroomMania > Prefab > Menu)");
+                UnityEditor.EditorUtility.DisplayDialog("Mushroom Mania", "Your scene is not set up correctly. Place down a Control prefab! (Assets > MushroomMania > Prefab > Menu)", "Ok");
             }
 #endif
         }

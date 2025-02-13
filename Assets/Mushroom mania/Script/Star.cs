@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement; // Import Scene Management
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class Star : MonoBehaviour
     {

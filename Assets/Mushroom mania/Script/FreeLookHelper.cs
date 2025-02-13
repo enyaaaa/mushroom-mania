@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class FreeLookHelper : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class HealthCircle : MonoBehaviour
     {

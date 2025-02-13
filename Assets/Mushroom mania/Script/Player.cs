@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class Player : MonoBehaviour
     {
@@ -131,8 +131,8 @@ namespace HelloMarioFramework
             }
             if (brain == null)
             {
-                Debug.LogWarning("Hello Mario Framework: Your scene is not set up correctly. Place down a Control prefab! (Assets > HelloMarioFramework > Prefab > Menu)");
-                UnityEditor.EditorUtility.DisplayDialog("Hello Mario Framework", "Your scene is not set up correctly. Place down a Control prefab! (Assets > HelloMarioFramework > Prefab > Menu)", "Ok");
+                Debug.LogWarning("Hello Mario Framework: Your scene is not set up correctly. Place down a Control prefab! (Assets > MushroomMania > Prefab > Menu)");
+                UnityEditor.EditorUtility.DisplayDialog("Hello Mario Framework", "Your scene is not set up correctly. Place down a Control prefab! (Assets > MushroomMania > Prefab > Menu)", "Ok");
             }
 #endif
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class HammerSpawn : MonoBehaviour
     {

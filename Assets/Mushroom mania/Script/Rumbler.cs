@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class Rumbler : MonoBehaviour
     {

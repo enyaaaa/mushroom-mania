@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class NPC : MonoBehaviour
     {

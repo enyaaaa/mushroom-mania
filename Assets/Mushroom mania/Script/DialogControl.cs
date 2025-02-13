@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class DialogControl : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     public class LoadingScreen : MonoBehaviour
     {

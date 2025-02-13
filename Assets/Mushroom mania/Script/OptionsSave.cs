@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-namespace HelloMarioFramework
+namespace MushroomMania
 {
     [Serializable]
     public class OptionsSave

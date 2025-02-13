@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement; // Required for scene loading
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;  // Singleton pattern
+    private int coinCount = 0;  // Track collected coins
 
     private void Awake()
     {
@@ -19,6 +20,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Function to add a coin
+    public void AddCoin()
+    {
+        coinCount++;
+        Debug.Log("Coins Collected: " + coinCount);
+    }
+
+    // Function to reset coin count when game restarts
+    public void ResetCoinCount()
+    {
+        coinCount = 0;
+        Debug.Log("Coin count reset!");
+    }
+
     // Call this function when the player dies
     public void PlayerDied()
     {
@@ -28,6 +43,13 @@ public class GameManager : MonoBehaviour
 
     private void LoadGameOverPage()
     {
-        SceneManager.LoadScene("gameover page"); // Make sure your Game Over scene is named "GameOver"
+        SceneManager.LoadScene("gameover page");
+    }
+
+    // Function to restart the game and reset coins
+    public void RestartGame()
+    {
+        ResetCoinCount();  // Reset coin count on game restart
+        SceneManager.LoadScene("game");
     }
 }

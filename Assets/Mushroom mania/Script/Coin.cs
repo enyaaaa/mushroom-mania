@@ -1,30 +1,70 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement; // Import Scene Management
 
 namespace MushroomMania
 {
     public class Coin : MonoBehaviour
     {
         [SerializeField]
-        private AudioClip coinSFX;
+        private AudioClip collectSFX; // Sound effect when collecting the star
+
+        [SerializeField]
+        private Material collectedCoin; // Material for collected stars
+
+        [Tooltip("All stars must have a unique name! This is how stars are tracked!")]
+        [SerializeField]
+        private string coinName;
+
+        [Tooltip("Time delay before transitioning to the win page")]
+        [SerializeField]
+        private float transitionDelay = 2.0f; // 2 seconds delay
+
+        private bool isCollected = false; // Prevents multiple triggers
+
+        private void Start()
+        {
+            if (IsCollected())
+            {
+                SkinnedMeshRenderer coinRenderer = transform.GetChild(0).GetChild(2).GetComponent<SkinnedMeshRenderer>();
+                if (coinRenderer != null)
+                    coinRenderer.material = collectedCoin;
+            }
+        }
 
         private void OnTriggerEnter(Collider collision)
         {
+            if (isCollected) return; // Prevent duplicate collection
+
             Player p = collision.transform.GetComponent<Player>();
+
             if (p != null)
             {
-                p.PlaySound(coinSFX);
-                SaveData.save.CollectCoin(); // Existing coin collection method
+                isCollected = true;
+                p.PlaySound(collectSFX);
+                Debug.Log("🌟 Coin Collected!");
 
-                // Update GameManager's coin count
-                if (GameManager.instance != null)
-                {
-                    GameManager.instance.AddCoin();
-                }
-
-                Destroy(gameObject);
+                // Disable star visuals & collision after collection
+                GetComponent<Collider>().enabled = false;
+                gameObject.SetActive(false);
             }
+        }
+
+        public bool IsCollected()
+        {
+            return SaveData.save.CheckCollection(coinName);
+        }
+
+        private bool SceneExists(string sceneName)
+        {
+            for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+            {
+                string scenePath = SceneUtility.GetScenePathByBuildIndex(i);
+                if (scenePath.Contains(sceneName))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

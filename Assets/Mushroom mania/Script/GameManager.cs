@@ -1,14 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement; // Required for scene loading
+using UnityEngine.SceneManagement;
+using UnityEngine.UI; // For UI Text
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;  // Singleton pattern
     private int coinCount = 0;  // Track collected coins
+    private Text coinText; // Reference to the UI text displaying the coin count
 
     private void Awake()
     {
-        // Ensure only one instance of GameManager exists
         if (instance == null)
         {
             instance = this;
@@ -20,25 +22,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Function to add a coin
+    private void Start()
+    {
+        // Find the CoinCount UI Text automatically if not set
+        coinText = GameObject.Find("CoinCount")?.GetComponent<Text>();
+        if (coinText == null)
+        {
+            Debug.LogWarning("⚠️ CoinCount UI Text not found! Make sure the GameObject name is correct.");
+        }
+
+        UpdateCoinUI();
+    }
+
     public void AddCoin()
     {
         coinCount++;
         Debug.Log("Coins Collected: " + coinCount);
+        UpdateCoinUI();
     }
 
-    // Function to reset coin count when game restarts
-    public void ResetCoinCount()
+    private void UpdateCoinUI()
     {
-        coinCount = 0;
-        Debug.Log("Coin count reset!");
+        if (coinText != null)
+        {
+            coinText.text = "Coins: " + coinCount;
+        }
     }
 
-    // Call this function when the player dies
     public void PlayerDied()
     {
         Debug.Log("Player has died! Loading Game Over Page...");
-        Invoke("LoadGameOverPage", 2f); // Delay restart for 2 seconds
+        Invoke("LoadGameOverPage", 2f);
+    }
+
+    private IEnumerator LoadGameOverPageAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("gameover page");
     }
 
     private void LoadGameOverPage()
@@ -46,10 +66,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("gameover page");
     }
 
-    // Function to restart the game and reset coins
     public void RestartGame()
     {
-        ResetCoinCount();  // Reset coin count on game restart
         SceneManager.LoadScene("game");
     }
 }

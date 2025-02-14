@@ -45,24 +45,19 @@ public class GameManager : MonoBehaviour
     {
         if (coinText != null)
         {
-            coinText.text = "Coins: " + coinCount;
+            coinText.text = coinCount.ToString();  // ✅ Convert int to string
         }
     }
 
     public void PlayerDied()
     {
         Debug.Log("Player has died! Loading Game Over Page...");
-        Invoke("LoadGameOverPage", 2f);
+        StartCoroutine(LoadGameOverPageAfterDelay(2f));  // ✅ Use Coroutine
     }
 
     private IEnumerator LoadGameOverPageAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("gameover page");
-    }
-
-    private void LoadGameOverPage()
-    {
         SceneManager.LoadScene("gameover page");
     }
 
